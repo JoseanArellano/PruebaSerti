@@ -1,5 +1,7 @@
 package com.prueba.serti.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.prueba.serti.entities.accesos;
 import com.prueba.serti.entities.pokemon;
 import com.prueba.serti.repositories.pokemonRepository;
 
@@ -24,6 +27,9 @@ public class pokemonService implements BaseService<pokemon>{
 	
 	@Autowired
 	private pokemonRepository pokemonRepo;
+	
+	@Autowired
+	private accesosService accesosService;
 	
 	private final String EXTERNAL_API_SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/";
 	
@@ -77,8 +83,24 @@ public class pokemonService implements BaseService<pokemon>{
 		        LinkedHashMap<String, Object> evolution_chain_Map = (LinkedHashMap<String, Object>) pokeMap.get("evolution_chain");
 		        newPokemon.setEvolution_chain_url((String) evolution_chain_Map.get("url"));
 		        
+		        accesos newAcceso = new accesos();
+		        newAcceso.setPokemon_name(newPokemon.getName());
+		        LocalDateTime ahora = LocalDateTime.now();
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		        String fechaFormateada = ahora.format(formatter);
+		        newAcceso.setTime(fechaFormateada);
+		        accesosService.save(newAcceso);
+		        
 		        return save(newPokemon);
 			}
+			
+			accesos newAcceso = new accesos();
+	        newAcceso.setPokemon_name(entityOptional.get().getName());
+	        LocalDateTime ahora = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String fechaFormateada = ahora.format(formatter);
+	        newAcceso.setTime(fechaFormateada);
+	        accesosService.save(newAcceso);
 			
 			return entityOptional.get();
 			
