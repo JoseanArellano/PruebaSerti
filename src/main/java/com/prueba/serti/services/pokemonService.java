@@ -2,17 +2,11 @@ package com.prueba.serti.services;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
 import com.prueba.serti.entities.accesos;
 import com.prueba.serti.entities.pokemon;
 import com.prueba.serti.repositories.pokemonRepository;

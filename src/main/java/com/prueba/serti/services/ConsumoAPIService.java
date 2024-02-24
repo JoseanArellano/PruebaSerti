@@ -1,7 +1,5 @@
 package com.prueba.serti.services;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Optional;
 
@@ -12,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.prueba.serti.entities.accesos;
 import com.prueba.serti.entities.pokemon;
 
 @Service
