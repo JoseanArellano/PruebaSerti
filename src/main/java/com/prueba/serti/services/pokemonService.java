@@ -50,6 +50,7 @@ public class pokemonService implements BaseService<pokemon>{
 			
 			if (entityOptional.isEmpty()) {
 				
+				//Se manda a llamar a la API de Pokemon y se procesan los datos del JSON
 				pokemon newPokemon = apiService.consultarPokemon(entityOptional, id);
 				
 		        accesos newAcceso = new accesos();
